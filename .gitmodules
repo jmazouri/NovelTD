@@ -1,0 +1,3 @@
+[submodule "lib/NovelRT"]
+	path = lib/NovelRT
+	url = https://github.com/novelrt/NovelRT.git
