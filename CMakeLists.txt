@@ -24,6 +24,26 @@ set(NOVELRT_SAMPLES_LINK_LIBRARIES
 )
 
 # Include sub-projects.
-add_subdirectory ("NovelTD")
-add_executable (NovelTD "NovelTD/NovelTD.cpp" "NovelTD/NovelTD.h")
+add_subdirectory ("src")
+add_executable (NovelTD "src/NovelTD.cpp" "include/NovelTD.h" "src/UI/Controls/Button.cpp" "src/UI/CanvasContext.cpp")
 target_link_libraries(NovelTD ${NOVELRT_SAMPLES_LINK_LIBRARIES})
+
+# Copy NovelRT resources
+set (source "${CMAKE_SOURCE_DIR}/lib/NovelRT/src/Resources")
+set (destination "${CMAKE_CURRENT_BINARY_DIR}/Resources")
+add_custom_command(
+ TARGET ${PROJECT_NAME} POST_BUILD
+ COMMAND ${CMAKE_COMMAND} -E create_symlink ${source} ${destination} 
+ DEPENDS ${destination}
+ COMMENT "symbolic link resources folder from ${source} => ${destination}"
+)
+
+# Copy NovelTD resources
+set (source "${CMAKE_SOURCE_DIR}/res")
+set (destination "${CMAKE_CURRENT_BINARY_DIR}/res")
+add_custom_command(
+ TARGET ${PROJECT_NAME} POST_BUILD
+ COMMAND ${CMAKE_COMMAND} -E create_symlink ${source} ${destination} 
+ DEPENDS ${destination}
+ COMMENT "symbolic link resources folder from ${source} => ${destination}"
+)
