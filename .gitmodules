@@ -1,3 +1,9 @@
 [submodule "lib/NovelRT"]
 	path = lib/NovelRT
 	url = https://github.com/novelrt/NovelRT.git
+[submodule "lib/tweeny"]
+	path = lib/tweeny
+	url = https://github.com/mobius3/tweeny.git
+[submodule "lib/imgui"]
+	path = lib/imgui
+	url = https://github.com/ocornut/imgui.git

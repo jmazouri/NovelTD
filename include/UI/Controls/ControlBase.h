@@ -8,14 +8,17 @@ namespace NovelTD::UI {
 	protected:
 		int layer;
 		unsigned long id;
-		NovelRT::Transform localTransform = NovelRT::Transform(NovelRT::Maths::GeoVector2<float>(), 0, NovelRT::Maths::GeoVector2<float>(1.0f, 1.0f));
-		NovelRT::Transform transform = NovelRT::Transform(NovelRT::Maths::GeoVector2<float>(), 0, NovelRT::Maths::GeoVector2<float>(1.0f, 1.0f));
+		NovelRT::Transform localTransform = NovelRT::Transform(NovelRT::Maths::GeoVector2<float>(0.0f, 0.0f), 0, NovelRT::Maths::GeoVector2<float>(1.0f, 1.0f));
+		NovelRT::Transform transform = NovelRT::Transform(NovelRT::Maths::GeoVector2<float>(0.0f, 0.0f), 0, NovelRT::Maths::GeoVector2<float>(1.0f, 1.0f));
+
+		NovelRT::LoggingService _logger; //not proud of this either
 	public:
 		ControlBase(int layer) {
 			this->layer = layer;
 		};
 
 		virtual void update() = 0;
+		virtual void executeObjectBehaviour() = 0;
 		virtual unsigned long getId() { return id; }
 
 		virtual void setPosition(const NovelRT::Maths::GeoVector2<float> position) {

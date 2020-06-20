@@ -23,10 +23,18 @@ set(NOVELRT_SAMPLES_LINK_LIBRARIES
   NovelRT
 )
 
+add_subdirectory(lib/tweeny)
+add_subdirectory(lib/imgui)
+
 # Include sub-projects.
 add_subdirectory ("src")
-add_executable (NovelTD "src/NovelTD.cpp" "include/NovelTD.h" "src/UI/Controls/Button.cpp" "src/UI/CanvasContext.cpp")
+add_executable (NovelTD 
+    "src/NovelTD.cpp" "include/NovelTD.h" "src/UI/Controls/Button.cpp"
+    "src/UI/CanvasContext.cpp" "src/UI/TransformOrigin.cpp" "src/UI/ImguiHelper.cpp"
+    "src/UI/ImguiHelper.cpp" "src/UI/imgui_impl_glfw.cpp" "src/UI/imgui_impl_opengl3.cpp")
 target_link_libraries(NovelTD ${NOVELRT_SAMPLES_LINK_LIBRARIES})
+target_link_libraries(NovelTD tweeny)
+target_link_libraries(NovelTD imgui)
 
 # Copy NovelRT resources
 set (source "${CMAKE_SOURCE_DIR}/lib/NovelRT/src/Resources")
