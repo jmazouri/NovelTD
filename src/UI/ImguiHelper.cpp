@@ -21,6 +21,7 @@ void glfw_error_callback(int error, const char* description)
 
 void NovelTD::UI::ImguiHelper::init(const std::shared_ptr<NovelRT::Windowing::WindowingService> windowingService) {
 
+
     //const char* glsl_version = "#version 130";
 
     // Setup Dear ImGui context
@@ -36,9 +37,15 @@ void NovelTD::UI::ImguiHelper::init(const std::shared_ptr<NovelRT::Windowing::Wi
 
     // Setup Platform/Renderer bindings
     auto window = windowingService->getWindow();
-    
+
+    if (!gladLoadGL()) {
+        printf("Failed to initialise glad.");
+        throw std::runtime_error("Unable to continue! The engine cannot start without glad.");
+        return;
+    }
+
     ImGui_ImplGlfw_InitForOpenGL(window, true);
-    ImGui_ImplOpenGL3_Init();
+    ImGui_ImplOpenGL3_Init("#version 430 core");
 
     // Load Fonts
     // - If no fonts are loaded, dear imgui will use the default font. You can also load multiple fonts and use ImGui::PushFont()/PopFont() to select them.
@@ -99,6 +106,7 @@ void NovelTD::UI::ImguiHelper::update()
     //glfwGetFramebufferSize(window, &display_w, &display_h);
     //glViewport(0, 0, display_w, display_h);
     //glClearColor(clear_color.x, clear_color.y, clear_color.z, clear_color.w);
+    //glClearColor(0.0f, 0.0f, 0.4f, 0.0f);
     //glClear(GL_COLOR_BUFFER_BIT);
     ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 

@@ -50,7 +50,7 @@ namespace NovelTD::UI {
 		
 		auto textSize = this->_textRect->getRenderedSize();
 
-		_logger.logInfo("Text Size " + std::to_string(textSize.getX()) + ", " + std::to_string(textSize.getY()));
+		//_logger.logInfo("Text Size " + std::to_string(textSize.getX()) + ", " + std::to_string(textSize.getY()));
 
 		//auto boxScale = NovelRT::Maths::GeoVector2<float>(textSize.getX() + (this->padding * 4.0f), textSize.getY() + (this->padding * 2.0f));
 		auto boxScale = NovelRT::Maths::GeoVector2<float>(textSize.getX(), textSize.getY());

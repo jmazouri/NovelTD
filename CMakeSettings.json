@@ -12,10 +12,7 @@
       "buildCommandArgs": "-v",
       "ctestCommandArgs": "",
       "variables": [
-        {
-          "name": "CMAKE_TOOLCHAIN_FILE",
-          "value": "D:\\Downloads\\vcpkg-master\\vcpkg-master\\scripts\\buildsystems\\vcpkg.cmake"
-        }
+        
       ]
     }
   ]

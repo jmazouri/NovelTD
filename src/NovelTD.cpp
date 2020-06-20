@@ -52,16 +52,19 @@ int main()
 
 	runner.SceneConstructionRequested += [&] {
 
+		canvasContext->executeObjectBehaviour();
+		
 		if (!created) {
 			imgui->init(runner.getWindowingService().lock());
 			created = true;
 		}
 
-		canvasContext->executeObjectBehaviour();
+		if (created) {
+			imgui->update();
+		}
 	};
 
 	runner.Update += [&](NovelRT::Timing::Timestamp delta) {
-		
 		
 		//auto dur = t.duration();
 		//auto newStep = static_cast<float>(delta.getTicks()) / static_cast<float>(period);
@@ -71,12 +74,11 @@ int main()
 		//button1->setText(std::to_string(newPos));
 
 		canvasContext->update();
-		//imgui->update();
 	};
 
 	runner.runNovel();
 
-	//imgui->dispose();
+	imgui->dispose();
 
 	return 0;
 }
