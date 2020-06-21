@@ -20,6 +20,7 @@ namespace NovelTD::UI {
 		CanvasContext(NovelRT::NovelRunner& runner, const NovelRT::Transform& transform, int layer);
 		void update();
 		void executeObjectBehaviour();
+		void debug(ImguiHelper& helper);
 
 		std::shared_ptr<Button> addButton(const std::string& text);
 	};

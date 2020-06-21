@@ -10,6 +10,8 @@ namespace NovelTD::UI {
 		void init(const std::shared_ptr<NovelRT::Windowing::WindowingService> windowingService);
 		void update();
 		void dispose();
+
+		NovelRT::Utilities::Event<> Update;
 	};
 }
 #endif

@@ -4,6 +4,7 @@
 #include "../include/NovelTD.h"
 #include <chrono>
 #include "tweeny.h"
+#include "../lib/imgui/imgui.h"
 
 
 
@@ -49,6 +50,25 @@ int main()
 	//auto t = tweeny::from(0).to(50).during(2000).onStep(moveButton);//.via(tweeny::easing::circularInOut);
 
 	bool created = false;
+
+	imgui->Update += [&] {
+		static float f = 0.0f;
+
+		ImGui::Begin("Hello, world!");                          // Create a window called "Hello, world!" and append into it.
+
+		ImGui::Text("This is some useful text.");               // Display some text (you can use a format strings too)
+		//ImGui::Checkbox("Another Window", &show_another_window);
+
+		static float pos[2] = { button1->getPosition().getX(), button1->getPosition().getX() };
+
+		ImGui::SliderFloat2("Button Pos", pos, 0.0f, 1000.0f);
+		//ImGui::ColorEdit3("clear color", (float*)&clear_color); // Edit 3 floats representing a color
+
+		ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
+		ImGui::End();
+
+		button1->setPosition(NovelRT::Maths::GeoVector2<float>(pos[0], pos[1]));
+	};
 
 	runner.SceneConstructionRequested += [&] {
 
